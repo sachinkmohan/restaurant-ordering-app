@@ -156,3 +156,11 @@ input {
   margin-bottom: 1em;
   padding: 1em;
 }
+
+/* Order Confirmation */
+.order-complete {
+  text-align: center;
+  background-color: #ecfdf5;
+  padding: 1.5em;
+  margin: 1em 0;
+}

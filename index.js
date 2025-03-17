@@ -5,6 +5,7 @@ const orderSummaryEl = document.getElementById("order-summary");
 const formEl = document.getElementById("order-form");
 const orderItemBtn = document.getElementById("order-item-btn");
 const removeBtn = document.getElementById("remove-item-btn");
+const orderCompleteEl = document.getElementById("order-complete");
 
 let orderedItems = [];
 
@@ -24,12 +25,10 @@ document.addEventListener("click", (e) => {
 document.addEventListener("submit", (e) => {
   if (e.target.id === "order-form-users") {
     e.preventDefault();
-    console.log("submit pressed");
     const realFromEl = document.getElementById("order-form-users");
     const userFormData = new FormData(realFromEl);
-    console.log("user form", userFormData);
     const name = userFormData.get("name");
-    console.log("name", name);
+    renderOrderCompletion(name);
   }
 });
 
@@ -47,7 +46,6 @@ function handlePlaceOrderClick(orderId) {
     price: orderedItemPrice,
     id: orderedItemId,
   });
-  console.log("items ordered", orderedItems);
   renderOrderSummary();
 }
 
@@ -129,6 +127,17 @@ function renderForm() {
         </div>`;
 
   formEl.innerHTML = formHtml;
+}
+
+function renderOrderCompletion(userName) {
+  formEl.style.display = "none";
+  orderSummaryEl.style.display = "none";
+
+  let orderCompleteHtml = `<div class="order-complete">
+          <h2>Thanks, ${userName}! Your order is on it's way!</h2>
+        </div>`;
+
+  orderCompleteEl.innerHTML = orderCompleteHtml;
 }
 
 renderMenuItems();
