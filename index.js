@@ -2,6 +2,7 @@ import { menuArray } from "./data.js";
 
 const menuItemsEl = document.getElementById("menu-items");
 const orderSummaryEl = document.getElementById("order-summary");
+const formEl = document.getElementById("order-form");
 const orderItemBtn = document.getElementById("order-item-btn");
 const removeBtn = document.getElementById("remove-item-btn");
 
@@ -15,7 +16,12 @@ document.addEventListener("click", (e) => {
     removeItems(Number(e.target.dataset.remove));
     renderOrderSummary();
   }
+  if (e.target.id === "place-order-btn") {
+    renderForm();
+  }
 });
+
+document.addEventListener("submit", () => {});
 
 function handlePlaceOrderClick(orderId) {
   const orderObj = menuArray.filter((menuItem) => {
@@ -93,6 +99,25 @@ function renderMenuItems() {
 
 function removeItems(id) {
   orderedItems = orderedItems.filter((item) => item.id !== id);
+}
+
+function renderForm() {
+  let formHtml = `<div class="order-form-container">
+          <form id="order-form-users">
+            <h2>Enter card details</h2>
+            <input type="text" id="name" placeholder="Name" required />
+            <input
+              type="text"
+              id="card-number"
+              placeholder="Card Number"
+              required
+            />
+            <input type="text" id="cvv" placeholder="CVV" required />
+            <button type="submit" id="pay-btn">Pay</button>
+          </form>
+        </div>`;
+
+  formEl.innerHTML = formHtml;
 }
 
 renderMenuItems();
