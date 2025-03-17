@@ -1,3 +1,19 @@
 body {
-    margin: 0;
-} 
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+/* Typography */
+h1,
+p {
+  margin: 0;
+}
+
+/* Layout */
+header {
+  padding: 2em;
+  color: white;
+  text-shadow: 5px 5px 4px red;
+  background: url("images/diner.png");
+  background-size: cover;
+}
