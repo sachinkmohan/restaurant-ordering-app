@@ -1,1 +1,3 @@
-### An app to order food
+### A vanilla JS app to order food
+
+Responsive on mobile and desktop devices
