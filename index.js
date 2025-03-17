@@ -4,6 +4,8 @@ const menuItemsEl = document.getElementById("menu-items");
 const orderSummaryEl = document.getElementById("order-summary");
 const orderItemBtn = document.getElementById("order-item-btn");
 
+let orderedItems = [];
+
 document.addEventListener("click", (e) => {
   if (e.target.dataset.order) {
     handlePlaceOrderClick(Number(e.target.dataset.order));
@@ -14,32 +16,53 @@ function handlePlaceOrderClick(orderId) {
   const orderObj = menuArray.filter((menuItem) => {
     return menuItem.id === orderId;
   })[0];
+
   const orderedItemName = orderObj.name;
   const orderedItemPrice = orderObj.price;
+  const orderedItemId = orderObj.id;
+
+  orderedItems.push({
+    name: orderedItemName,
+    price: orderedItemPrice,
+    id: orderedItemId,
+  });
+  console.log("items ordered", orderedItems);
   renderOrderSummary();
 }
 
 function renderOrderSummary() {
-  let orderSummaryItemsHtml = ` <div>
-          <h2>Your Order</h2>
-          <div class="order-items-container">
-            <ul id="order-items">
+  let orderedItemsHtml = ``;
+  orderedItems.forEach((item) => {
+    orderedItemsHtml += `<ul id="order-items">
               <li class="order-item">
                 <div class="item-name-in-summary">
-                  <span>Pizza</span
+                  <span>${item.name}</span
                   ><button class="remove-item-btn">remove</button>
                 </div>
-
-                <span class="item-price">$14</span>
+                <span class="item-price">${item.price}</span>
               </li>
-            </ul>
+            </ul>`;
+  });
+
+  let totalPrice = orderedItems.reduce(
+    (total, currentItem) => total + currentItem.price,
+    0
+  );
+
+  console.log("total price", totalPrice);
+
+  let orderSummaryItemsHtml = `<div>
+          <h2>Your Order</h2>
+          <div class="order-items-container">
+            ${orderedItemsHtml}
           </div>
           <div class="total">
             <span>Total price: </span>
-            <span id="total-price">$14</span>
+            <span id="total-price">${totalPrice}</span>
           </div>
           <button id="place-order-btn">Place Order</button>
         </div>`;
+
   orderSummaryEl.innerHTML = orderSummaryItemsHtml;
 }
 
