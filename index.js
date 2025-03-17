@@ -21,7 +21,17 @@ document.addEventListener("click", (e) => {
   }
 });
 
-document.addEventListener("submit", () => {});
+document.addEventListener("submit", (e) => {
+  if (e.target.id === "order-form-users") {
+    e.preventDefault();
+    console.log("submit pressed");
+    const realFromEl = document.getElementById("order-form-users");
+    const userFormData = new FormData(realFromEl);
+    console.log("user form", userFormData);
+    const name = userFormData.get("name");
+    console.log("name", name);
+  }
+});
 
 function handlePlaceOrderClick(orderId) {
   const orderObj = menuArray.filter((menuItem) => {
@@ -105,10 +115,11 @@ function renderForm() {
   let formHtml = `<div class="order-form-container">
           <form id="order-form-users">
             <h2>Enter card details</h2>
-            <input type="text" id="name" placeholder="Name" required />
+            <input type="text" id="name" name="name" placeholder="Name" required />
             <input
               type="text"
               id="card-number"
+
               placeholder="Card Number"
               required
             />
