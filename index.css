@@ -83,7 +83,7 @@ header {
   font-weight: bold;
 }
 
-.remove-item-btn {
+#remove-item-btn {
   border: none;
   background: none;
   cursor: pointer;

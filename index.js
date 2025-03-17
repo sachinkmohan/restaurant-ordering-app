@@ -3,12 +3,17 @@ import { menuArray } from "./data.js";
 const menuItemsEl = document.getElementById("menu-items");
 const orderSummaryEl = document.getElementById("order-summary");
 const orderItemBtn = document.getElementById("order-item-btn");
+const removeBtn = document.getElementById("remove-item-btn");
 
 let orderedItems = [];
 
 document.addEventListener("click", (e) => {
   if (e.target.dataset.order) {
     handlePlaceOrderClick(Number(e.target.dataset.order));
+  }
+  if (e.target.dataset.remove) {
+    removeItems(Number(e.target.dataset.remove));
+    renderOrderSummary();
   }
 });
 
@@ -37,7 +42,7 @@ function renderOrderSummary() {
               <li class="order-item">
                 <div class="item-name-in-summary">
                   <span>${item.name}</span
-                  ><button class="remove-item-btn">remove</button>
+                  ><button id="remove-item-btn" data-remove=${item.id}>remove</button>
                 </div>
                 <span class="item-price">${item.price}</span>
               </li>
@@ -48,8 +53,6 @@ function renderOrderSummary() {
     (total, currentItem) => total + currentItem.price,
     0
   );
-
-  console.log("total price", totalPrice);
 
   let orderSummaryItemsHtml = `<div>
           <h2>Your Order</h2>
@@ -86,6 +89,10 @@ function renderMenuItems() {
     `;
   });
   menuItemsEl.innerHTML = menuItemsHtml;
+}
+
+function removeItems(id) {
+  orderedItems = orderedItems.filter((item) => item.id !== id);
 }
 
 renderMenuItems();
