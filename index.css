@@ -1,19 +1,120 @@
+/* Base Styles */
 body {
   margin: 0 auto;
   max-width: 600px;
+  font-family: "Smythe", system-ui;
 }
 
 /* Typography */
 h1,
+h2,
+h5,
 p {
   margin: 0;
 }
 
 /* Layout */
+
+main {
+  margin: 0 1em;
+}
+
+/* Header */
+
 header {
   padding: 2em;
   color: white;
   text-shadow: 5px 5px 4px red;
   background: url("images/diner.png");
   background-size: cover;
+}
+
+/* Menu Items */
+
+.menu-item-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #d2d2d2;
+  padding: 2em 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+.emoji {
+  font-size: 4rem;
+}
+
+/* Menu Item Details */
+
+.item-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.25em;
+}
+
+.item-name h5 {
+  color: #8b8b8b;
+}
+
+/* Buttons */
+
+#order-item-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+#place-order-btn {
+  margin-top: 1em;
+  border: none;
+  background-color: #16db99;
+  width: 100%;
+  padding: 1em 0;
+  color: white;
+  font-weight: bold;
+}
+
+.remove-item-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #bbbbbb;
+  font-size: 0.6rem;
+}
+
+/* Order Summary */
+
+#order-summary {
+  margin: 2em 0;
+}
+
+#order-summary h2 {
+  text-align: center;
+}
+
+.order-items-container {
+  border-bottom: 1px solid black;
+}
+
+.total,
+.order-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.total {
+  padding-top: 1em;
+}
+
+ul {
+  padding: 0;
 }
